@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Genealogy Tree</title>
+  <link rel="stylesheet" href="https://unpkg.com/family-chart@0.9.0/dist/styles/family-chart.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header>
+    <h1 id="app-title">Loading...</h1>
+    <div class="lang-switch">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="fr">FR</button>
+      <button data-lang="vi">VI</button>
+    </div>
+    <div id="auth-status">
+      <span id="user-info"></span>
+      <button id="admin-login-btn">Admin Login</button>
+      <button id="logout-btn" style="display:none;">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="loading-indicator" class="loading">Loading genealogy tree...</div>
+    <div id="chart-container" class="f3"></div>
+  </main>
+
+  <footer>
+    <p id="footer-text"></p>
+  </footer>
+
+  <div id="login-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2 id="login-title">Admin Login</h2>
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <div class="modal-actions">
+          <button type="submit" id="login-submit-btn">Login</button>
+          <button type="button" id="login-cancel-btn">Cancel</button>
+        </div>
+      </form>
+      <div id="login-error" class="error-message"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/d3@7"></script>
+  <script src="https://unpkg.com/family-chart@0.9.0/dist/family-chart.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

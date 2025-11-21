@@ -1,0 +1,65 @@
+rules_version = '2';
+
+/**
+ * Firestore Security Rules for Genealogy Tree
+ *
+ * Security model:
+ * - Tree data (people) is publicly readable (no authentication required)
+ * - Only authenticated admin users can write/modify data
+ * - User roles are stored in users/{uid} collection
+ *
+ * To deploy these rules:
+ * firebase deploy --only firestore:rules
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper function: Check if user is signed in
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Helper function: Check if user is admin
+    function isAdmin() {
+      return isSignedIn() &&
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Trees collection
+    match /trees/{treeId} {
+      // Tree metadata is publicly readable, admin-only writable
+      allow read: if true;
+      allow write: if isAdmin();
+
+      // People subcollection
+      match /people/{personId} {
+        // Public read access
+        allow read: if true;
+
+        // Only admins can create, update, or delete people
+        allow create, update, delete: if isAdmin();
+      }
+
+      // Tree metadata subcollection (for configuration)
+      match /meta/{docId} {
+        allow read: if true;
+        allow write: if isAdmin();
+      }
+    }
+
+    // Users collection (for role management)
+    match /users/{uid} {
+      // Only admins can read and write user roles
+      allow read, write: if isAdmin();
+    }
+
+    // Audit log collection (for future implementation)
+    match /audit_logs/{logId} {
+      // Admins can read logs; system writes are handled server-side
+      allow read: if isAdmin();
+      allow write: if false; // Logs should only be written server-side
+    }
+  }
+}
