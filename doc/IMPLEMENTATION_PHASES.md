@@ -6,9 +6,9 @@ This document tracks the implementation progress of the genealogy tree applicati
 - [Phase 1: Foundations](#phase-1-foundations)
 - [Phase 2: Firebase Setup & First Person](#phase-2-firebase-setup--first-person)
 - [Phase 3: GitHub Pages Deployment](#phase-3-github-pages-deployment)
-- [Phase 4: Enhanced Features](#phase-4-enhanced-features)
-- [Phase 5: Admin Editing Interface](#phase-5-admin-editing-interface)
-- [Phase 6: Audit Logging](#phase-6-audit-logging)
+- [Phase 4: Admin Editing Interface](#phase-4-admin-editing-interface)
+- [Phase 5: Audit Logging](#phase-5-audit-logging)
+- [Phase 6: Enhanced Features](#phase-6-enhanced-features)
 - [Phase 7: Advanced Features & Polish](#phase-7-advanced-features--polish)
 - [Notes](#notes)
 
@@ -64,39 +64,22 @@ This document tracks the implementation progress of the genealogy tree applicati
 
 **Goal:** Deploy the application to GitHub Pages and verify functionality.
 
-- [ ] Configure GitHub Pages to serve from `site/`
-- [ ] Update repository settings to enable GitHub Pages
-- [ ] Configure custom domain (optional)
-- [ ] Test deployment with Firebase connection
-- [ ] Verify authentication flow works on GitHub Pages
-- [ ] Test all three language translations
-- [ ] Verify chart rendering with real data
-- [ ] Check responsive design on mobile devices
+- [x] Configure GitHub Pages to serve from root directory
+- [x] Update repository settings to enable GitHub Pages
+- [x] Configure custom domain (optional - not using)
+- [x] Test deployment with Firebase connection
+- [x] Verify authentication flow works on GitHub Pages
+- [x] Test all three language translations
+- [ ] Verify chart rendering with real data (needs admin editing first)
+- [x] Check responsive design on mobile devices
 - [ ] Add loading states and error handling
-- [ ] Performance testing with full dataset
+- [ ] Performance testing with full dataset (moved to Phase 5)
+
+**Status:** Almost Complete (waiting on real data testing)
 
 ---
 
-## Phase 4: Enhanced Features
-
-**Goal:** Add advanced features for better user experience.
-
-- [ ] Implement search/filter functionality
-- [ ] Add person detail modal/panel
-- [ ] Implement zoom and pan controls for large trees
-- [ ] Add "focus on person" feature
-- [ ] Implement generations up/down controls (from old code)
-- [ ] Add export functionality (PDF, PNG)
-- [ ] Implement print-friendly view
-- [ ] Add breadcrumb navigation
-- [ ] Implement keyboard shortcuts
-- [ ] Add accessibility improvements (ARIA labels, screen reader support)
-
-**Dependencies:** Phase 3 (deployed and tested).
-
----
-
-## Phase 5: Admin Editing Interface
+## Phase 4: Admin Editing Interface
 
 **Goal:** Build admin tools for adding and editing genealogy data.
 
@@ -110,10 +93,11 @@ This document tracks the implementation progress of the genealogy tree applicati
 - [ ] Implement undo/redo for edits
 - [ ] Add image upload for person avatars (Firebase Storage)
 - [ ] Create backup/restore functionality
+- [ ] Performance testing with full dataset
 
 ---
 
-## Phase 6: Audit Logging
+## Phase 5: Audit Logging
 
 **Goal:** Implement change tracking and audit trail.
 
@@ -144,6 +128,23 @@ This document tracks the implementation progress of the genealogy tree applicati
   reason: "Optional reason for change"
 }
 ```
+
+---
+
+## Phase 6: Enhanced Features
+
+**Goal:** Add advanced features for better user experience.
+
+- [ ] Implement search/filter functionality
+- [ ] Add person detail modal/panel
+- [ ] Implement zoom and pan controls for large trees
+- [ ] Add "focus on person" feature
+- [ ] Implement generations up/down controls (from old code)
+- [ ] Add export functionality (PDF, PNG)
+- [ ] Implement print-friendly view
+- [ ] Add breadcrumb navigation
+- [ ] Implement keyboard shortcuts
+- [ ] Add accessibility improvements (ARIA labels, screen reader support)
 
 ---
 

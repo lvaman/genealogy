@@ -78,7 +78,7 @@ This guide walks you through setting up Firebase for the genealogy tree applicat
 
 ## Step 5: Update Firebase Configuration
 
-1. Open `site/firebase-init.js` in your project
+1. Open `firebase-init.js` in your project
 2. Replace the placeholder values with your actual Firebase config:
 
 ```javascript
@@ -292,7 +292,6 @@ For the `death` map, add:
 
 1. Start a local web server:
 ```bash
-cd site
 python3 -m http.server 8000
 ```
 

@@ -48,7 +48,7 @@ A publicly viewable, admin-editable genealogy tree built with vanilla JavaScript
 ### Directory Structure
 
 ```
-site/
+/                            # GitHub Pages root
 ├── index.html               # Entry point
 ├── style.css                # Global styles
 ├── app.js                   # Application bootstrap
@@ -59,9 +59,15 @@ site/
 │   └── firestore.js         # Database operations
 ├── adapters/                # Data transformation
 │   └── toFamilyChartData.js # Canonical -> Family Chart format
-└── components/              # UI components
-    ├── chart.js             # Chart rendering
-    └── ui.js                # UI helpers
+├── components/              # UI components
+│   ├── chart.js             # Chart rendering
+│   └── ui.js                # UI helpers
+├── doc/                     # Documentation
+│   ├── DATA_STRUCTURE.md
+│   ├── FIREBASE_SETUP.md
+│   └── IMPLEMENTATION_PHASES.md
+├── firebase.json            # Firebase configuration
+└── firestore.rules          # Security rules
 ```
 
 ### Data Flow
@@ -213,11 +219,10 @@ ES modules require HTTP(S):
 
 ```bash
 # Python
-cd site
 python3 -m http.server 8000
 
 # Node.js
-npx http-server site
+npx http-server
 
 # VS Code
 # Use Live Server extension
@@ -230,12 +235,12 @@ Open: `http://localhost:8000`
 ### GitHub Pages
 
 1. Enable in repo settings
-2. Set source: `main` branch, `/site` folder
+2. Set source: `main` branch, `/` (root)
 3. Access at: `https://username.github.io/genealogy`
 
 ### Firebase Setup
 
 1. Follow [FIREBASE_SETUP.md](doc/FIREBASE_SETUP.md)
-2. Update `site/firebase-init.js` with config
+2. Update `firebase-init.js` with config
 3. Deploy rules: `firebase deploy --only firestore:rules`
 4. Create admin user and grant role
