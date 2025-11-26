@@ -33,14 +33,32 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
 
-      // People subcollection
-      match /people/{personId} {
-        // Public read access
-        allow read: if true;
+      // People collection
+    match /people/{personId} {
+      // Read: Public access
+      allow read: if true;
 
-        // Only admins can create, update, or delete people
-        allow create, update, delete: if isAdmin();
-      }
+      // Write: Admin only with validation
+      allow create, update: if isAdmin() &&
+        // Document ID must match person.id
+        request.resource.data.id == personId &&
+
+        // Required fields must exist
+        request.resource.data.keys().hasAll(['id', 'gender', 'names', 'vital_status']) &&
+
+        // Gender validation
+        request.resource.data.gender in ['M', 'F', 'U'] &&
+
+        // Vital status validation
+        request.resource.data.vital_status in ['living', 'deceased', 'unknown'] &&
+
+        // Names must be array with at least one entry
+        request.resource.data.names is list &&
+        request.resource.data.names.size() > 0;
+
+      // Delete: Admin only
+      allow delete: if isAdmin();
+    }
 
       // Tree metadata subcollection (for configuration)
       match /meta/{docId} {
